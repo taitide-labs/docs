@@ -1,0 +1,7 @@
+textRules:
+  spellcheck: 0
+
+ignore:
+  - "dist/**"
+  - ".rumdl_cache/**"
+  - "CHANGELOG.md"

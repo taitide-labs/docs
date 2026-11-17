@@ -1,0 +1,19 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
+[tools]
+hk = "2.12"
+rumdl = "0.3.3"
+lychee = "0.24.2"
+typos = "1"
+gitleaks = "8"
+zizmor = "1"
+"github:huacnlee/autocorrect" = "2.16.3"
+"github:1jehuang/mermaid-rs-renderer" = "0.3.1"
+
+[tasks.check]
+description = "Run all documentation, spelling, and workflow checks"
+run = "hk check --all --silent -n"
+
+[tasks.fmt]
+description = "Auto-fix documentation formatting and typography"
+run = "hk fix --all --silent -n"
