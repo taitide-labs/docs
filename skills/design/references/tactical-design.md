@@ -1,8 +1,8 @@
 # 战术设计与验收冻结
 
-遵循 `Modular Monolith`、`VSA`、`DMMF`、`CQRS` 融合架构与 `Trunk-Based Development`，在主干一次性冻结共享基础层、纯领域核、切片入参出参契约以及挂起 `wip` 跳过标记的代码原生 `ATDD` 黑盒验收考卷。
+遵循 `Modular Monolith`、`VSA`、`DMMF`、`CQRS` 融合架构与 `Trunk-Based Development`，在主干一次性冻结共享基础层、纯领域核、切片入参出参契约以及挂起 `wip` 跳过标记的代码原生 `ATDD` 黑盒验收测试。
 
-严禁在本阶段编写切片内部的业务编排、处理器实现及白盒单元测试，必须仅落盘共享内核、切片契约骨架与验收考卷，以消除后续多工作树并行开发时的合并冲突并保留切片内部重构自由。
+严禁在本阶段编写切片内部的业务编排、处理器实现及白盒单元测试，必须仅落盘共享内核、切片契约骨架与验收测试，以消除后续多工作树并行开发时的合并冲突并保留切片内部重构自由。
 
 ## 代码放置与架构规则
 
@@ -13,10 +13,12 @@
 
 ## 冻结顺序
 
+按本次变更波及范围依序冻结下列基线（存量变更未涉及的层级保持不动）：
+
 1. 落盘底层骨架：创建全局递增数据库迁移脚本与工作区模块及发版清单配置。
 2. 完成共享内核：实现并通过 `primitives`、`contracts`、基础设施层及各上下文共享 `domain` 的 1 对 1 单元测试；当增量改造既有共享模型或表结构时，遵循 `Parallel Change` 按扩展、迁移、收缩保留兼容层。
 3. 冻结 `Keystone Interface`：为每个垂直切片冻结入参出参契约及初始标记为未激活（`Planned`）的自注册路由入口，确保生产构建自动屏蔽未完工路由且多切片并行期间零中央路由表合并冲突。
-4. 冻结黑盒验收考卷：依据 `Specification by Example` 与 `Given-When-Then` 在切片黑盒测试中基于隔离临时数据库与参数化边界矩阵编写覆盖正常流与异常拒止流的验收考卷；既有绿灯断言保持不动，新用例统一挂起 `wip` 跳过标记，以供需求审阅并防范下游 `Reward Hacking`。
+4. 冻结黑盒验收测试：依据 `Specification by Example` 与 `Given-When-Then` 在切片黑盒测试中基于隔离临时数据库与参数化边界矩阵编写覆盖正常流与异常拒止流的验收测试；既有绿灯断言保持不动，新用例统一挂起 `wip` 跳过标记，以供需求审阅并防范下游 `Reward Hacking`。
 5. 合入冻结基线：通过工作区全量静态检查与测试门禁后，将完整冻结基线先行合入 `main`。
 
 ## Rust 栈物理拓扑与编译约束
@@ -48,6 +50,6 @@ workspace-root/
     └── e2e-journeys/                 # 跨上下文端到端旅程测试
 ```
 
-- 包粒度与测试防膨胀：每个限界上下文最多拆分 `domain` 与 `slices` 两个 Crate（纯查询上下文可省略 `domain`），避免每切片独立建包造成运行时重复链接；L2 黑盒考卷统一由单一集成测试目标 `tests/acceptance.rs` 通过 `#[path = "acceptance/<slice>.rs"]` 聚合，使用 `#[sqlx::test]` 与 `#[rstest]` 编写并在未实现场景标注 `#[ignore = "wip"]`。
+- 包粒度与测试防膨胀：每个限界上下文最多拆分 `domain` 与 `slices` 两个 Crate（纯查询上下文可省略 `domain`），避免每切片独立建包造成运行时重复链接；L2 黑盒验收测试统一由单一集成测试目标 `tests/acceptance.rs` 通过 `#[path = "acceptance/<slice>.rs"]` 聚合，使用 `#[sqlx::test]` 与 `#[rstest]` 编写并在未实现场景标注 `#[ignore = "wip"]`。
 - 模块树与非叶声明分离：严禁使用 `mod.rs` 或在叶子业务源码中内联 `#[test]` 与 `mod tests` 块，必须将 `lib.rs`、`<slice>.rs`、`tests.rs` 与 `tests/acceptance.rs` 限定为纯 `mod` 与 `pub use` 声明容器，并将单元测试独立落盘于 `src/tests/<unit>.rs` 或 `src/<slice>/tests/<unit>.rs`。
 - 零冲突路由自注册：各切片在 `endpoint.rs` 中通过 `inventory::submit!` 提交初始状态为 `SliceStatus::Planned` 的路由描述符，并在 `slices/src/lib.rs` 暴露空函数 `link()` 供 `server` 显式调用一次，防止静态链接阶段消除注册段。
