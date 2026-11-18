@@ -17,7 +17,7 @@ flowchart LR
 | 技能 | 核心职责 | 单跳参考指南 |
 | :--- | :--- | :--- |
 | [grilling](skills/grilling/SKILL.md) | 设计树前沿追问、方案推荐与越界阻断 | — |
-| [design](skills/design/SKILL.md) | 战略建模、契约设计、表面设计、战术冻结、工单拆解与横切 ADR 唯一总入口 | [战略设计](skills/design/references/strategic-design.md)、[契约设计](skills/design/references/contract-design.md)、[客户端设计](skills/design/references/client-design.md)、[命令行设计](skills/design/references/cli-design.md)、[战术冻结](skills/design/references/tactical-design.md)、[任务拆解](skills/design/references/task-slicing.md) |
+| [design](skills/design/SKILL.md) | 战略建模、契约设计、交互设计、战术冻结、工单拆解与横切 ADR 唯一总入口 | [战略设计](skills/design/references/strategic-design.md)、[契约设计](skills/design/references/contract-design.md)、[客户端设计](skills/design/references/client-design.md)、[命令行设计](skills/design/references/cli-design.md)、[战术冻结](skills/design/references/tactical-design.md)、[任务拆解](skills/design/references/task-slicing.md) |
 | [implement](skills/implement/SKILL.md) | 隔离工作树内对照冻结基线交付后端切片、客户端切片或端到端合龙 | [后端切片](skills/implement/references/backend-slice.md)、[客户端切片](skills/implement/references/client-slice.md)、[端到端合龙](skills/implement/references/e2e-cutover.md) |
 | [verify](skills/verify/SKILL.md) | 角色分离对抗验证、防投机核查、语义对齐与沙漏下口审查摘要生成 | — |
 | [guardrail](skills/guardrail/SKILL.md) | 按信任倒金字塔将评审缺陷转化为类型、Clippy 与 `ast-grep` 防线 | — |
