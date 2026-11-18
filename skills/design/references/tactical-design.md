@@ -48,6 +48,6 @@ workspace-root/
     └── e2e-journeys/                 # 跨上下文端到端旅程测试
 ```
 
-- 包粒度与测试防膨胀：每个限界上下文最多拆分 `domain` 与 `slices` 两个 Crate（纯查询上下文可省略 `domain`），避免每切片独立建包造成运行时重复链接；L2 黑盒验收测试统一由单一集成测试目标 `tests/acceptance.rs` 通过 `#[path = "acceptance/<slice>.rs"]` 聚合，使用 `#[sqlx::test]` 与 `#[rstest]` 编写并在未实现场景标注 `#[ignore = "wip"]`。
+- 包粒度与测试防膨胀：每个限界上下文最多拆分 `domain` 与 `slices` 两个 Crate（纯查询上下文可省略 `domain`），避免每切片独立建包造成运行时重复链接；黑盒验收测试统一由单一集成测试目标 `tests/acceptance.rs` 通过 `#[path = "acceptance/<slice>.rs"]` 聚合，使用 `#[sqlx::test]` 与 `#[rstest]` 编写并在未实现场景标注 `#[ignore = "wip"]`。
 - 模块树与非叶声明分离：严禁使用 `mod.rs` 或在叶子业务源码中内联 `#[test]` 与 `mod tests` 块，必须将 `lib.rs`、`<slice>.rs`、`tests.rs` 与 `tests/acceptance.rs` 限定为纯 `mod` 与 `pub use` 声明容器，并将单元测试独立落盘于 `src/tests/<unit>.rs` 或 `src/<slice>/tests/<unit>.rs`。
 - 零冲突路由自注册：各切片在 `endpoint.rs` 中通过 `inventory::submit!` 提交初始状态为 `SliceStatus::Planned` 的路由描述符，并在 `slices/src/lib.rs` 暴露空函数 `link()` 供 `server` 显式调用一次，防止静态链接阶段消除注册段。
