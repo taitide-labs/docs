@@ -34,7 +34,7 @@ Parent Issue:
 
 ## 指向坐标
 
-- 接口与端口契约：<contracts/、Feature Map 或切片入参出参契约路径>
+- 接口与端口契约：<contracts/、DESIGN.md 或切片入参出参契约路径>
 - 迁移与共享领域：<数据库迁移脚本与共享 domain 相关类型路径>
 - 切片目录：<切片或页面所在目标目录>
 
@@ -49,10 +49,10 @@ Parent Issue:
 ```markdown
 # <Parent Issue 名称> 端到端整体验收
 
-<1-2 句话说明激活跨上下文集成旅程测试、切换客户端真实 SDK、导出 OpenAPI 契约与合龙验证目标>
+<1-2 句话说明激活跨上下文集成旅程测试、切换客户端真实服务连接、导出 OpenAPI 契约校验一致性与合龙验证目标>
 
 ## 验收与合龙坐标
 
 - 端到端旅程测试：<端到端旅程测试目录或文件路径>
-- 契约与客户端：<contracts/openapi.json 与客户端适配器目录>
+- 契约与客户端：<contracts/openapi.json 与客户端连接配置路径>
 ```
