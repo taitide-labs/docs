@@ -1,6 +1,6 @@
 # 战略设计
 
-遵循 Domain Modeling Made Functional（DMMF）、Big Picture Event Storming、Shared-Nothing 与 SSOT 收敛业务边界与领域语义。严禁在本阶段输出数据库表结构、接口路由或具体代码实现，必须将讨论严格约束在业务问题空间，以避免技术细节过早污染领域模型。
+遵循 Domain Modeling Made Functional（DMMF）、Big Picture Event Storming、Shared-Nothing 与 SSOT 收敛业务边界与领域语义。严禁输出数据库表结构、接口路由或具体代码实现，必须将讨论严格约束在业务问题空间，以避免技术细节过早污染领域模型。
 
 ## 执行流程
 
