@@ -16,13 +16,13 @@ description: 从宏观问题空间向微观实现逐阶段推进软件设计并�
 3. 原型设计：建立图形客户端或命令行交互基线（纯后端服务确认后跳过），读取 [prototype-design.md](references/prototype-design.md)。
 4. 战术设计：冻结共享领域模型、数据库迁移、切片契约入口与黑盒验收测试，读取 [tactical-design.md](references/tactical-design.md)。
 5. 任务拆解：将冻结基线拆解为 GitHub 工单与阻塞依赖图，读取 [task-slicing.md](references/task-slicing.md)。
-6. 示范交付：仅限全新项目，经用户确认后使用 `implement` Skill 交付首个 `Walking Skeleton` 切片验证装配线，合入后收工。
+6. 示范交付：仅限全新项目，经用户确认后使用 `implement` Skill 交付首个 Walking Skeleton 切片验证装配线，合入后收工。
 
 ## ADR 规范
 
-- 当决策同时满足难逆转、脱离背景令人费解、存在真实方案权衡三项条件时，即刻落盘 `ADR`；缺任一项时跳过。
+- 当决策同时满足难逆转、脱离背景令人费解、存在真实方案权衡三项条件时，即刻落盘 ADR；缺任一项时跳过。
 - 全局决策存于 `docs/adr/NNNN-slug.md`，限界上下文专属决策存于 `<module_path>/docs/adr/NNNN-slug.md`。
-- 编号单调递增，新建状态固定为 `accepted`；当既有决策因业务下线直接作废且无继任方案时改为 `deprecated`，被新决策推翻时新增 `ADR` 并将旧篇状态改为 `superseded by [NNNN-slug.md](./NNNN-slug.md)`。
+- 编号单调递增，新建状态固定为 `accepted`；当既有决策因业务下线直接作废且无继任方案时改为 `deprecated`，被新决策推翻时新增 ADR 并将旧篇状态改为 `superseded by [NNNN-slug.md](./NNNN-slug.md)`。
 
 ```markdown
 # <决策简短标题>
