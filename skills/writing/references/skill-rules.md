@@ -4,14 +4,12 @@
 
 ```text
 skill-name/
-|-- SKILL.md
-|   |-- YAML frontmatter     # name、description 和调用策略
-|   `-- Markdown body        # 正文
-|-- agents/                  # UI 元信息与调用策略
-|   `-- openai.yaml          # OpenAI
-|-- scripts/                 # 可选，可执行脚本
-|-- references/              # 可选，按需查看的文档
-`-- assets/                  # 可选，直接输出资产文件
+├── SKILL.md                 # 入口文件（YAML frontmatter + Markdown 正文）
+├── agents/                  # 可选，平台配置目录
+│   └── openai.yaml          # OpenAI 平台 UI 元信息与调用策略
+├── scripts/                 # 可选，可执行脚本
+├── references/              # 可选，按需查看的文档
+└── assets/                  # 可选，直接输出的资产文件
 ```
 
 ## SKILL.md
