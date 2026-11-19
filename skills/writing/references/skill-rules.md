@@ -5,7 +5,7 @@
 ```text
 skill-name/
 ├── SKILL.md                 # 入口文件（YAML frontmatter + Markdown 正文）
-├── agents/                  # 可选，平台配置目录
+├── agents/                  # 平台配置目录
 │   └── openai.yaml          # OpenAI 平台 UI 元信息与调用策略
 ├── scripts/                 # 可选，可执行脚本
 ├── references/              # 可选，按需查看的文档
