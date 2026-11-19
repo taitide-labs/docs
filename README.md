@@ -21,7 +21,7 @@ flowchart LR
 | [implement](skills/implement/SKILL.md) | 隔离工作树内对照冻结基线交付后端切片、客户端切片或端到端合龙 | [后端切片](skills/implement/references/backend-slice.md)、[客户端切片](skills/implement/references/client-slice.md)、[端到端合龙](skills/implement/references/e2e-cutover.md) |
 | [verify](skills/verify/SKILL.md) | 角色分离对抗验证、防投机核查、语义对齐与沙漏下口审查摘要生成 | — |
 | [guardrail](skills/guardrail/SKILL.md) | 按信任倒金字塔将评审缺陷转化为类型、Clippy 与 `ast-grep` 防线 | — |
-| [writing](skills/writing/SKILL.md) | 面向 AI 规则、Skill、技术文档与公共传播文案的写作规范 | [AI 规则与 Skill](skills/writing/references/agents-rules.md)、[技术文档](skills/writing/references/tech-docs.md)、[社媒文案](skills/writing/references/social-copy.md) |
+| [writing](skills/writing/SKILL.md) | 面向 AI 规则、Skill、技术文档与公共传播文案的写作规范 | [AI 规则](skills/writing/references/agents-rules.md)、[Skill 规范](skills/writing/references/skill-rules.md)、[subAgent Prompt](skills/writing/references/subAgent-prompt.md)、[技术文档](skills/writing/references/tech-docs.md) |
 
 ## 安装与校验
 
