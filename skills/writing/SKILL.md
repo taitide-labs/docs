@@ -1,6 +1,6 @@
 ---
 name: writing
-description: 写作手册；当需要编写技术文档、Agent 规则（如 AGENTS.md、SKILL.md）、subAgent Prompt 或对外发布文字时必须使用。
+description: 写作手册；当需要创建或编辑文档、Agent 规则（如 AGENTS.md、SKILL.md）、subAgent Prompt 或对外发布文字时必须使用。
 ---
 
 不同写作任务的读者与目标完全不同：给 Agent 看的规则追求边界清晰、执行准确，给工程师看的文档追求高信噪比与可复现性，给大众看的传播文案则追求真实感与可读性。
