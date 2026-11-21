@@ -1,33 +1,36 @@
 ---
 name: design
-description: 从战略建模、契约冻结、交互原型、战术基线到工单拆解的软件设计唯一入口。当涉及规划新系统、维护领域术语与上下文边界、变更接口契约或编排多切片并发基线时必须使用，即使未明确提及该技能
+description: 从宏观问题空间向微观实现逐阶段推进软件设计、客户端实现闭环并冻结交付基线；当涉及规划新系统、新增业务功能、维护领域术语与上下文边界、变更接口契约或界面与命令行交互、冻结战术基线或拆解开发工单时必须使用；若是纯实现缺陷修复且不涉及业务规则或契约变更则无需使用。
 ---
 
-从宏观问题空间向微观实现细节逐层推进软件设计并冻结前置基线。每次仅读取当前所处阶段的单一参考文件，以避免后续细节过早污染当前上下文；进入下一阶段前必须获得用户确认，严禁跨阶段抢跑以免契约未稳先写实现。当任意阶段存在未决分叉需要拍板时，读取并遵循 [grilling](../grilling/SKILL.md) 发起前沿追问。
+从宏观问题空间向微观实现逐层收敛设计并冻结前置基线：
+
+- 当启动全新项目时，全栈、后端或命令行项目从阶段 1 依序推进至阶段 6，纯前端项目完成阶段 3 即结束。
+- 当处理存量变更时，从受波及的最上游阶段切入，仅推进受影响的阶段（上限至阶段 5）；当下游阶段未受波及时，经用户确认直接结束。
+- 每次仅读取当前阶段的单一参考文件，防止后置细节污染当前上下文。
+- 严禁跨阶段越序执行，必须经用户确认当前阶段完成后再进入下一阶段；当执行中需要修订上游事实源时，从受波及的最上游阶段重新切入。
+- 严禁直接推送 `main`，所有需合入主干的阶段产出必须通过独立分支创建 PR 合并。
+- 当任意阶段存在未决分叉时，使用 `grilling` Skill 发起前沿追问。
 
 ## 阶段流程
 
-1. 战略设计：收敛子域划分、统一语言、`Workflow` 与限界上下文，读取 [strategic-design.md](references/strategic-design.md)。
-2. 契约设计：锁定跨端接口契约与跨上下文同步端口及异步事件，读取 [contract-design.md](references/contract-design.md)。
-3. 原型设计：按产品形态锁定客户端交互、`Feature Map` 与 `Golden Snapshot` 基线，读取 [prototype-design.md](references/prototype-design.md)。
-4. 战术设计与验收冻结：构建 Modular Monolith 底座、共享纯领域核与带标记的黑盒验收考卷，读取 [tactical-design.md](references/tactical-design.md)。
-5. 任务拆解：基于主干全绿基线投射 GitHub 原生里程碑与父子工单，读取 [task-slicing.md](references/task-slicing.md)。
-6. 示范或并行交付：全新项目优先选取一条最小端到端通路按 `Walking Skeleton` 交付首个切片验证装配线，随后并发交付其余工单，执行时读取 [implement](../implement/SKILL.md)。
-
-## 增量变更路由
-
-- 当新增业务子域、调整限界上下文或修订 `context.md` 领域术语时，从阶段 1 起步；术语定稿后必须顺带核查绑定的代码标识符与下游契约是否受波及，未受波及则经用户确认后直接在阶段 1 收工，受波及则沿后续阶段继续推进以守住 `SSOT`。
-- 当涉及跨切片联动或修改接口字段、同步端口、集成事件与表面交互契约时，从阶段 2 起步。
-- 当仅在既有单一切片内部调整局部规则、错误映射或界面样式时，直接从阶段 4 起步，遵循 `Parallel Change` 追加带 `#[ignore = "wip"]` 的新验收场景后再拆单实现。
+1. 战略设计：划分业务子域、限界上下文与统一语言，读取 [strategic-design.md](references/strategic-design.md)。
+2. 契约设计：当存在对外或跨上下文契约时，读取 [contract-design.md](references/contract-design.md) 定义跨端接口契约及跨上下文同步端口与集成事件；否则经确认跳过。
+3. 交互设计：当涉及用户交互表面时，客户端读取 [client-design.md](references/client-design.md) 完成客户端设计与实现闭环（纯前端项目或纯前端变更至此结束），命令行读取 [cli-design.md](references/cli-design.md) 确认命令行体验；纯后端服务经确认跳过。
+4. 战术设计：读取 [tactical-design.md](references/tactical-design.md)，冻结后端或命令行的共享领域模型、数据库迁移、切片契约入口与黑盒验收测试。
+5. 任务拆解：读取 [task-slicing.md](references/task-slicing.md)，编排临时工单拓扑 YAML 并调用 `design` Skill 目录下的 `./scripts/create-issues.ts`（可用 `--help` 查看用法）批量创建 GitHub 工单。
+6. 示范交付：仅限全新项目，经用户确认后使用 `implement` Skill 交付首个 Walking Skeleton 切片验证装配线，合入后结束。
 
 ## ADR 规范
 
-- 当决策同时满足难逆转、脱离背景令人费解、存在真实方案权衡三项条件时，必须立即落盘 `ADR`；缺任一项即跳过，以防低质文档泛滥。
-- 全局决策存于根目录 `docs/adr/NNNN-slug.md`，限界上下文局部决策就近存于 `<module_path>/docs/adr/NNNN-slug.md`。
-- 尚未合入主干的草稿可在当前分支修订或移除；一旦合入主干即永久锁定编号，当旧决策失效时通过新文件声明替代关系，严禁重排已合入历史编号以保护提交与工单引用。
+- 当决策同时满足难逆转、脱离背景令人费解、存在真实方案权衡三项条件时，即刻落盘 ADR；缺任一项时跳过。
+- 全局决策存于 `docs/adr/NNNN-slug.md`，限界上下文专属决策存于 `<module_path>/docs/adr/NNNN-slug.md`。
+- 编号单调递增，新建状态固定为 `accepted`；当既有决策因业务下线直接作废且无继任方案时改为 `deprecated`；当既有决策被新决策推翻时，新增 ADR 并将旧篇状态改为 `superseded by [NNNN-slug.md](./NNNN-slug.md)`。
 
 ```markdown
 # <决策简短标题>
+
+Status: <accepted | deprecated | superseded by [NNNN-slug.md](./NNNN-slug.md)>
 
 <1-3 句话说明背景、最终决定与核心理由>
 

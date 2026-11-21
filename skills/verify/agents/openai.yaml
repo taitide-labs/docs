@@ -1,0 +1,3 @@
+interface:
+  display_name: "Verify"
+  short_description: "以独立审计视角验证待合入变更质量、防投机并输出交付审查摘要"

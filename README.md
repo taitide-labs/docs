@@ -4,23 +4,24 @@ Taitide 工程研发方法论与正交 AI 代理技能库。
 
 ## 技能体系
 
-整套研发流程收敛为五枚职责正交、按需单跳加载的独立技能：
+整套研发与写作流程收敛为六枚职责正交、按需单跳加载的独立技能：
 
 ```mermaid
 flowchart LR
-  G["grilling：设计树前沿追问"] -. "面临多方案权衡按需唤醒" .-> D["design：软件设计唯一入口"]
-  D -->|"冻结契约与工单后"| I["implement：隔离工作树分型交付"]
-  I -->|"独立验收或发版巡检"| V["verify：对抗验证与审查摘要"]
-  V -->|"抓出共性坏味道"| R["guardrail：静态防线与全仓清扫"]
+  D["design：软件设计总入口"] -. "面临未决分叉按需唤醒" .-> G["grilling：设计树前沿追问"]
+  D -->|"冻结契约与工单后"| I["implement：隔离工作树切片交付"]
+  I -->|"独立验收或发版巡检"| V["verify：独立审计与审查摘要"]
+  V -->|"发现共性架构缺陷"| R["guardrail：静态防线固化"]
 ```
 
-| 技能 | 核心职责 | 单跳参考指南 |
-| :--- | :--- | :--- |
-| [grilling](skills/grilling/SKILL.md) | 设计树前沿追问、方案推荐与越界阻断 | — |
-| [design](skills/design/SKILL.md) | 战略建模、契约设计、交互原型、战术冻结、工单拆解与横切 ADR 唯一总入口 | [战略设计](skills/design/references/strategic-design.md)、[契约设计](skills/design/references/contract-design.md)、[原型设计](skills/design/references/prototype-design.md)、[战术冻结](skills/design/references/tactical-design.md)、[任务拆解](skills/design/references/task-slicing.md) |
-| [implement](skills/implement/SKILL.md) | 隔离工作树内对照冻结基线交付后端切片、客户端切片或端到端合龙 | [后端切片](skills/implement/references/backend-slice.md)、[客户端切片](skills/implement/references/client-slice.md)、[端到端合龙](skills/implement/references/e2e-cutover.md) |
-| [verify](skills/verify/SKILL.md) | 角色分离对抗验证、防投机核查、语义对齐与沙漏下口审查摘要生成 | — |
-| [guardrail](skills/guardrail/SKILL.md) | 按信任倒金字塔将评审缺陷转化为类型、Clippy 与 `ast-grep` 防线 | — |
+| 技能 | 核心职责 |
+| :--- | :--- |
+| [grilling](skills/grilling/SKILL.md) | 设计树前沿追问、方案推荐与越界阻断 |
+| [design](skills/design/SKILL.md) | 战略设计、契约设计、客户端闭环与命令行交互、战术冻结、工单拆解与 ADR 总入口 |
+| [implement](skills/implement/SKILL.md) | 隔离工作树内对照冻结基线交付后端切片、命令行切片或端到端联调 |
+| [verify](skills/verify/SKILL.md) | 独立审计验证、防投机核查、语义对齐与交付审查摘要生成 |
+| [guardrail](skills/guardrail/SKILL.md) | 按确定性优先级将评审缺陷转化为类型、静态分析与 `ast-grep` 防线 |
+| [writing](skills/writing/SKILL.md) | 面向 AI 规则、Skill、技术文档与公共传播文案的写作规范 |
 
 ## 安装与校验
 

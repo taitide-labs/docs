@@ -1,0 +1,3 @@
+interface:
+  display_name: "Guardrail"
+  short_description: "将评审缺陷与架构越界沉淀为编译期类型、静态分析与 AST 防线"
