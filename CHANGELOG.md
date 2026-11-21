@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/taitide-labs/docs/compare/v0.2.0...v0.3.0) (2026-11-21)
+
+
+### Features
+
+* **skills:** 重构研发技能闭环并补齐写作规范与工单创建脚本 ([#9](https://github.com/taitide-labs/docs/issues/9)) ([b037dc2](https://github.com/taitide-labs/docs/commit/b037dc2b66c432cd636f27b1fe6971d3fdf82a42))
+
 ## [0.2.0](https://github.com/taitide-labs/docs/compare/v0.1.0...v0.2.0) (2026-11-18)
 
 
