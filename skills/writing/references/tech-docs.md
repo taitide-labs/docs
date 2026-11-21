@@ -19,5 +19,5 @@
 - API：遵循 OpenAPI Specification 编写或生成 JSON。
 - RFC：遵循 Google Design Doc。
 - 故障复盘：遵循 Google SRE Blameless Postmortem。
-- 外部 Issue：遵循目标项目的 `ISSUE_TEMPLATE`，保持同行对话的平实口吻与拟人化，发布前必须呈现给用户确认。
+- 外部 Issue：遵循目标项目的 `ISSUE_TEMPLATE`，保持同行对话的平实口吻与自然真人语气，发布前必须呈现给用户确认。
 - 外部 PR：遵循目标项目的 `pull_request_template.md`，保持简洁，发布前必须呈现给用户确认。
